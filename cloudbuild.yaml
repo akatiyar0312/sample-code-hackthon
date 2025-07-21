@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/linear-theater-463712-r8/payment-backend'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - push
+      - 'gcr.io/linear-theater-463712-r8/payment-backend'
+
+images:
+  - 'gcr.io/linear-theater-463712-r8/payment-backend'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
