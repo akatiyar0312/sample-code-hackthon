@@ -1,14 +1,14 @@
-# Use a lightweight Java runtime as base
+# Use a lightweight Java runtime
 FROM eclipse-temurin:17-jdk-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy your Spring Boot JAR (change name as needed)
+# Copy your JAR
 COPY target/payments-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose port used in application.properties (default 8080)
+# Expose default port (optional, for local dev)
 EXPOSE 8080
 
-# Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Use shell form to enable environment variable expansion
+CMD java -Dserver.port=8080 -jar app.jar
