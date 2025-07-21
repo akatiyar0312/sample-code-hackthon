@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copy your Spring Boot JAR (change name as needed)
-COPY target/my-service.jar app.jar
+COPY target/demo.jar app.jar
 
 # Expose port used in application.properties (default 8080)
 EXPOSE 8080
