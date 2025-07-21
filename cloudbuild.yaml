@@ -1,39 +1,24 @@
 steps:
-  # Step 1: Build the Java application using Maven
+  # Step 1: Build the Spring Boot app using Maven
   - name: 'gcr.io/cloud-builders/mvn'
-    args: ['clean', 'package', '-DskipTests']
+    args: ['clean', 'package']
+    id: 'Maven Build'
 
-  # Step 2: Build the Docker image (tag with commit SHA for traceability)
+  # Step 2: Build the Docker image using the JAR just built
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
-      - '--no-cache'
       - '-t'
-      - 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA'
+      - 'gcr.io/linear-theater-463712-r8/payment-backend'
       - '.'
+    id: 'Docker Build'
 
-  # Step 3: Push the Docker image
+  # Step 3: Push the image to GCR or Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - push
-      - 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA'
-
-  # Step 4 (Optional): Deploy to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      - run
-      - deploy
-      - payment-backend
-      - '--image'
-      - 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA'
-      - '--region=asia-south1'
-      - '--platform=managed'
-      - '--allow-unauthenticated'
-      - '--quiet'
+      - 'gcr.io/linear-theater-463712-r8/payment-backend'
+    id: 'Push Image'
 
 images:
-  - 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA'
-
-options:
-  logging: CLOUD_LOGGING_ONLY
+  - 'gcr.io/linear-theater-463712-r8/payment-backend'
