@@ -30,7 +30,7 @@ steps:
       - payment-backend
       - '--image'
       - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
-      - '--region=asia-south1'
+      - '--region=us-central1'
       - '--platform=managed'
       - '--allow-unauthenticated'
       - '--quiet'
