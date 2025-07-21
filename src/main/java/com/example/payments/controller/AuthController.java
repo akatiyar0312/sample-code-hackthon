@@ -1,0 +1,30 @@
+package com.example.payments.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.payments.model.LoginRequest;
+import com.example.payments.model.User;
+import com.example.payments.service.UserService;
+
+@RestController
+@RequestMapping("/api")
+public class AuthController {
+    @Autowired private UserService userService;
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
+        User user = userService.login(req.getUsername(), req.getPassword())
+                               .orElseThrow(() -> new RuntimeException("Invalid username or password"));
+        return ResponseEntity.ok(Map.of(
+            "token", "dummy-jwt-token",
+            "user", Map.of("user_id", user.getUserId(), "username", user.getUsername())
+        ));
+    }
+}
