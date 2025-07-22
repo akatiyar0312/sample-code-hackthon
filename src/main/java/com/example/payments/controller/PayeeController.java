@@ -49,13 +49,13 @@ public ResponseEntity<List<Payee>> getPayees() {
 
 
     @PostMapping
-public ResponseEntity<Payee> addPayee(@RequestBody Payee payee, @RequestHeader("Authorization") String token) {
+public ResponseEntity<Payee> addPayee(@RequestBody Payee payee) {
     try {
-        System.out.println("Fetching payees for userId: {}" + TokenUtil.extractUserId(token));
-        Long userId = TokenUtil.extractUserId(token);
+        //System.out.println("Fetching payees for userId: {}" + TokenUtil.extractUserId(token));
+       // Long userId = TokenUtil.extractUserId(token);
         System.out.println("Extracted userId from token: {}");
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findById(1l)
             .orElseThrow(() -> {
                 return new RuntimeException("User not found");
             });
