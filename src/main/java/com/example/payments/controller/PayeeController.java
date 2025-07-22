@@ -1,9 +1,8 @@
 package com.example.payments.controller;
 
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +28,7 @@ public class PayeeController {
     @Autowired 
     private UserRepository userRepository;
 
-    private static final Logger logger = LogManager.getLogger(PayeeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PayeeController.class);
 
 
     @GetMapping
