@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.payments.model.LoginRequest;
-import com.example.payments.model.User;
 import com.example.payments.service.UserService;
 
 @RestController
 @RequestMapping("/api")
 public class AuthController {
-    @Autowired private UserService userService;
 
-    
+    @Autowired
+    private UserService userService;
 
-   
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
+        // Just return Hello World for now
+        System.out.println("Received login request");
+        return ResponseEntity.ok("Hello, World!");
+    }
 }
