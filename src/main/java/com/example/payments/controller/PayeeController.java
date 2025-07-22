@@ -29,14 +29,14 @@ public class PayeeController {
 
 
     @GetMapping
-public ResponseEntity<List<Payee>> getPayees(@RequestHeader("Authorization") String token) {
+public ResponseEntity<List<Payee>> getPayees() {
     try {
       //  logger.info("TEST LOG FROM PayeeController");
 
-        Long userId = TokenUtil.extractUserId(token);
-        System.err.println("Fetching payees for userId: {}" + userId);
+        //Long userId = TokenUtil.extractUserId(token);
+        System.err.println("Fetching payees for userId: {}" + 11);
 
-        List<Payee> payees = payeeRepository.findByUserId(userId);
+        List<Payee> payees = payeeRepository.findByUserId(1l);
         //logger.info("Found {} payees for userId {}", payees.size(), userId);
 
         return ResponseEntity.ok(payees);
