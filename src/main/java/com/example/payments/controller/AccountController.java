@@ -20,6 +20,6 @@ public class AccountController {
     @GetMapping
     public List<Account> getAccounts(@RequestHeader("Authorization") String token) {
         Long userId = TokenUtil.extractUserId(token); // stub/mocked
-        return accountRepository.findByUser(userId);
+        return accountRepository.findByUserId(userId);
     }
 }

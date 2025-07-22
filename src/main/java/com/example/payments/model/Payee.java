@@ -9,7 +9,7 @@ public class Payee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long payeeId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -31,7 +31,7 @@ public class Payee {
     private Instant createdAt = Instant.now();
 
     public void setPayeeId(Long payeeId) {
-        this.payeeId = payeeId;
+        this.id = payeeId;
     }
 
     public void setUser(User user) {
@@ -59,7 +59,7 @@ public class Payee {
     }
 
     public Long getPayeeId() {
-        return payeeId;
+        return id;
     }
 
     public User getUser() {
