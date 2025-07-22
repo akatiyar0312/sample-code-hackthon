@@ -18,13 +18,5 @@ import com.example.payments.service.UserService;
 public class AuthController {
     @Autowired private UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
-        User user = userService.login(req.getUsername(), req.getPassword())
-                               .orElseThrow(() -> new RuntimeException("Invalid username or password"));
-        return ResponseEntity.ok(Map.of(
-            "token", "dummy-jwt-token",
-            "user", Map.of("user_id", user.getUserId(), "username", user.getUsername())
-        ));
-    }
+   
 }
