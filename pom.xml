@@ -24,11 +24,7 @@
 
     <dependencies>
 
-        <!-- Log4j2 support -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
-        </dependency>
+       
 
         <!-- Spring Boot starter without logging (to avoid conflict with Logback) -->
         <dependency>

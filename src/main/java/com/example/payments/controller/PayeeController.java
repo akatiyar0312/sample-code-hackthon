@@ -1,8 +1,6 @@
 package com.example.payments.controller;
 
 import java.util.List;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,24 +26,23 @@ public class PayeeController {
     @Autowired 
     private UserRepository userRepository;
 
-	private static final Logger logger = LoggerFactory.getLogger(PayeeController.class);
 
 
     @GetMapping
 public ResponseEntity<List<Payee>> getPayees(@RequestHeader("Authorization") String token) {
     try {
-        logger.info("TEST LOG FROM PayeeController");
+      //  logger.info("TEST LOG FROM PayeeController");
 
         Long userId = TokenUtil.extractUserId(token);
         System.err.println("Fetching payees for userId: {}" + userId);
 
         List<Payee> payees = payeeRepository.findByUserId(userId);
-        logger.info("Found {} payees for userId {}", payees.size(), userId);
+        //logger.info("Found {} payees for userId {}", payees.size(), userId);
 
         return ResponseEntity.ok(payees);
 
     } catch (Exception e) {
-        logger.error("Error fetching payees", e);
+        System.out.println("Error fetching payees" + e.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }
@@ -56,22 +53,21 @@ public ResponseEntity<Payee> addPayee(@RequestBody Payee payee, @RequestHeader("
     try {
         System.out.println("Fetching payees for userId: {}" + TokenUtil.extractUserId(token));
         Long userId = TokenUtil.extractUserId(token);
-        logger.info("Extracted userId from token: {}", userId);
+        System.out.println("Extracted userId from token: {}");
 
         User user = userRepository.findById(userId)
             .orElseThrow(() -> {
-                logger.warn("User not found with ID: {}", userId);
                 return new RuntimeException("User not found");
             });
 
         payee.setUser(user);
         Payee savedPayee = payeeRepository.save(payee);
-        logger.info("New payee added for userId {}: {}", userId, savedPayee.getName());
+        System.out.println("New payee added for userId {}: {}");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPayee);
 
     } catch (Exception e) {
-        logger.error("Error occurred while adding payee", e);  // Logs full stack trace
+        System.out.println("Error occurred while adding payee");  // Logs full stack trace
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }
