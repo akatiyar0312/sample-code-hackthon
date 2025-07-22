@@ -37,7 +37,7 @@ public ResponseEntity<List<Payee>> getPayees(@RequestHeader("Authorization") Str
         logger.info("TEST LOG FROM PayeeController");
 
         Long userId = TokenUtil.extractUserId(token);
-        logger.info("Fetching payees for userId: {}", userId);
+        System.err.println("Fetching payees for userId: {}" + userId);
 
         List<Payee> payees = payeeRepository.findByUserId(userId);
         logger.info("Found {} payees for userId {}", payees.size(), userId);
