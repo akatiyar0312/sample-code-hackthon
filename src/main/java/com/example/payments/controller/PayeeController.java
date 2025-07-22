@@ -54,7 +54,7 @@ public ResponseEntity<List<Payee>> getPayees(@RequestHeader("Authorization") Str
     @PostMapping
 public ResponseEntity<Payee> addPayee(@RequestBody Payee payee, @RequestHeader("Authorization") String token) {
     try {
-        System.err.println("Fetching payees for userId: {}" + TokenUtil.extractUserId(token));
+        System.out.println("Fetching payees for userId: {}" + TokenUtil.extractUserId(token));
         Long userId = TokenUtil.extractUserId(token);
         logger.info("Extracted userId from token: {}", userId);
 
