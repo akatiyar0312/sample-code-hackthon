@@ -35,6 +35,8 @@ public class PayeeController {
     @GetMapping
 public ResponseEntity<List<Payee>> getPayees(@RequestHeader("Authorization") String token) {
     try {
+        logger.info("TEST LOG FROM PayeeController");
+
         Long userId = TokenUtil.extractUserId(token);
         logger.info("Fetching payees for userId: {}", userId);
 
