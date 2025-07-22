@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
+<Configuration status="DEBUG" xmlns="http://logging.apache.org/log4j/2.0/config">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.example.payments.controller" level="debug" additivity="false">
+        <Logger name="com.example.payments.controller" level="DEBUG" additivity="false">
             <AppenderRef ref="Console" />
         </Logger>
-        <Root level="info">
+        <Root level="INFO">
             <AppenderRef ref="Console" />
         </Root>
     </Loggers>
