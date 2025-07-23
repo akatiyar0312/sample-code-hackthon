@@ -20,9 +20,9 @@ spec:
     spec:
       containers:
         - name: payment-backend
-          image: gcr.io/YOUR_PROJECT_ID/payment-backend:latest
+          image: gcr.io/linear-theater-463712-r8/payment-backend:latest
           ports:
             - containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod"
+              value: "prod
