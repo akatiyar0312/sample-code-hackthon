@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: payment-backend
-          image: gcr.io/linear-theater-463712-r8/payment-backend:latest
+          image: IMAGE_PLACEHOLDER
           ports:
             - containerPort: 8080
           env:
