@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.payments.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class AuthController {
 
     @Autowired
@@ -21,6 +24,8 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
         // Just return Hello World for now
+        log.info("Received login request with payload: {}", payload);
+
         System.out.println("Received login request");
         return ResponseEntity.ok("Hello, World!");
     }
