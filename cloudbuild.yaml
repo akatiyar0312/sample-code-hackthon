@@ -39,3 +39,10 @@ steps:
 images:
   - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
 
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+logging: CLOUD_LOGGING_ONLY
+
+
+
+

@@ -1,9 +1,11 @@
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <logger name="com.example" level="DEBUG"/>
-    
-    <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-    </root>
+  <appender name="CLOUD" class="com.google.cloud.logging.logback.LoggingAppender">
+    <log>application.log</log> <!-- optional: cloud log name -->
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CLOUD"/>
+  </root>
 </configuration>
