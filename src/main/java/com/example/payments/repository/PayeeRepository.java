@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface PayeeRepository extends JpaRepository<Payee, Long> {
     List<Payee> findByUser(User user);
-    List<Payee> findByUserId(Long id);
     
 }

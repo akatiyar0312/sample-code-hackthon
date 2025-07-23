@@ -33,10 +33,11 @@ public ResponseEntity<List<Payee>> getPayees() {
         //Long userId = TokenUtil.extractUserId(token);
         System.err.println("Fetching payees for userId: {}" + 11);
 
-        List<Payee> payees = payeeRepository.findByUserId(1l);
+       // List<Payee> payees = payeeRepository.findBy(1l);
         //logger.info("Found {} payees for userId {}", payees.size(), userId);
 
-        return ResponseEntity.ok(payees);
+       // return ResponseEntity.ok(payees);
+       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 
     } catch (Exception e) {
         System.out.println("Error fetching payees" + e.getMessage());
