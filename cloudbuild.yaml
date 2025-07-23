@@ -40,7 +40,7 @@ images:
   - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
 
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: LEGACY
 
 
 
