@@ -24,4 +24,9 @@ public class AccountController {
         Long userId = TokenUtil.extractUserId(token); // stub/mocked
         return accountRepository.findByUserId(userId);
     }
+
+    @GetMapping("/health")
+    public String healthCheck() {
+        return "OK";
+    }
 }
