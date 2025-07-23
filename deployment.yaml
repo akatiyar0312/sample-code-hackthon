@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment-backend
-labels:
-  app: payment-backend
+  labels:
+    app: payment-backend
 spec:
   replicas: 2
   selector:
@@ -19,10 +19,10 @@ spec:
         logging.googleapis.com/namespace: "default"
     spec:
       containers:
-      - name: payment-backend
-        image: gcr.io/$PROJECT_ID/payment-backend:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "prod"
+        - name: payment-backend
+          image: gcr.io/YOUR_PROJECT_ID/payment-backend:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"
