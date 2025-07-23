@@ -11,24 +11,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.payments.service.UserService;
 
 
 @RestController
 @RequestMapping("/api")
 public class AuthController {
 
-  
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
-        // Just return Hello World for now
-        logger.info("Received login request with payload: {}", payload);
+public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
+    logger.info("Received login request with payload: {}", payload);
 
+    // Intentionally throw an exception to trigger 500 error
+    throw new RuntimeException("Simulated server error for testing");
 
-        System.out.println("Received login request");
-        return ResponseEntity.ok("Hello, World!");
-    }
+    // This line won't be reached
+    // return ResponseEntity.ok("Hello, World!");
+}
+
 }
