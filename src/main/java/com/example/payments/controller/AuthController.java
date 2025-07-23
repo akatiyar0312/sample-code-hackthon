@@ -25,6 +25,8 @@ public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
     // Intentionally throw an exception to trigger 500 error
     if (payload == null || payload.isEmpty()) {
         logger.error("Payload is null or empty");
+        System.out.println("Payload is null or empty");
+        System.err.println("Payload is null or empty");
         throw new RuntimeException("Invalid payload");
     }
     // This line won't be reached
