@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.payments.service.UserService;
 
 
 @RestController
 @RequestMapping("/api")
 public class AuthController {
 
-    @Autowired
-    private UserService userService;
+  
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 

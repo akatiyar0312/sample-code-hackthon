@@ -1,11 +1,9 @@
 package com.example.payments.service;
 
 import com.example.payments.model.Account;
-import com.example.payments.model.User;
 import com.example.payments.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class AccountService {
@@ -15,9 +13,7 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public List<Account> getAccountsForUser(User user) {
-        return accountRepository.findByUser(user);
-    }
+  
 
     public Account getAccountById(Long id) {
         return accountRepository.findById(id)
