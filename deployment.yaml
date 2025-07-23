@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-backend
+labels:
+  app: payment-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: payment-backend
+  template:
+    metadata:
+      labels:
+        app: payment-backend
+      annotations:
+        logging.googleapis.com/monitored-resource: "k8s_container"
+        logging.googleapis.com/cluster-name: "payment-cluster"
+        logging.googleapis.com/namespace: "default"
+    spec:
+      containers:
+      - name: payment-backend
+        image: gcr.io/$PROJECT_ID/payment-backend:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
