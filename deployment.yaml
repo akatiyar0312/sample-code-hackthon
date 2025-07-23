@@ -13,10 +13,6 @@ spec:
     metadata:
       labels:
         app: payment-backend
-      annotations:
-        logging.googleapis.com/monitored-resource: "k8s_container"
-        logging.googleapis.com/cluster-name: "payment-cluster"
-        logging.googleapis.com/namespace: "default"
     spec:
       containers:
         - name: payment-backend
@@ -25,4 +21,4 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: "prod
+              value: "prod"
