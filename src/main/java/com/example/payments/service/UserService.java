@@ -1,6 +1,5 @@
 package com.example.payments.service;
 
-import com.example.payments.model.User;
 import com.example.payments.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,5 @@ public class UserService {
     }
 
 
-    public Optional<User> getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+ 
 }
