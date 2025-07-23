@@ -26,10 +26,12 @@ public ResponseEntity<String> login(@RequestBody Map<String, Object> payload) {
     logger.info("Received login request with payload: {}", payload);
 
     // Intentionally throw an exception to trigger 500 error
-    throw new RuntimeException("Simulated server error for testing");
-
+    if (payload == null || payload.isEmpty()) {
+        logger.error("Payload is null or empty");
+        throw new RuntimeException("Invalid payload");
+    }
     // This line won't be reached
-    // return ResponseEntity.ok("Hello, World!");
+    return ResponseEntity.ok("Hello, World!");
 }
 
 }
