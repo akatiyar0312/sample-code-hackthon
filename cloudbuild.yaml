@@ -1,13 +1,13 @@
 steps:
   # Step 1: Build the Java application using Maven
   - name: 'gcr.io/cloud-builders/mvn'
-    args: ['clean', 'package', '-DskipTests']
+    args: ['clean', 'package']
     id: 'Build JAR'
 
   # Step 2: Build the Docker image with the commit SHA
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'build'
+      - build
       - '--no-cache'
       - '-t'
       - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
@@ -17,31 +17,23 @@ steps:
   # Step 3: Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
-      - 'push'
+      - push
       - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
     id: 'Push Docker Image'
 
   # Step 4: Deploy the image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
+    entrypoint: gcloud
     args:
-      - 'run'
-      - 'deploy'
-      - 'payment-backend'
-      - '--image=gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
+      - run
+      - deploy
+      - payment-backend
+      - '--image'
+      - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
       - '--region=us-central1'
       - '--platform=managed'
       - '--allow-unauthenticated'
-      - '--port=8080'
-      - '--memory=2Gi'
-      - '--cpu=2'
-      - '--timeout=900'
-      - '--max-instances=10'
-      - '--min-instances=0'
-      - '--concurrency=80'
-      - '--cpu-throttling'
-      - '--set-env-vars=SPRING_PROFILES_ACTIVE=prod'
-      - '--execution-environment=gen2'
+      - '--quiet'
     id: 'Deploy to Cloud Run'
 
 images:
@@ -49,4 +41,7 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-  machineType: E2_HIGHCPU_8
+
+
+
+
