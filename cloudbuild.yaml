@@ -40,4 +40,5 @@ images:
   - 'gcr.io/linear-theater-463712-r8/payment-backend:${COMMIT_SHA}'
 
 options:
+  logging: CLOUD_LOGGING_ONLY  # Ensures logs go to Cloud Logging
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
