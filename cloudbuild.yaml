@@ -28,7 +28,7 @@ steps:
       - |
         gcloud container clusters get-credentials payment-cluster \
           --zone us-central1 \
-          --project linear-theater-463712-r8
+          --project ltc-reboot25-team-20
     id: 'Connect to GKE'
 
   # Step 5: Deploy to GKE with kubectl
