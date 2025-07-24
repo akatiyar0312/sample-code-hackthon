@@ -26,8 +26,8 @@ steps:
     args:
       - -c
       - |
-        gcloud container clusters get-credentials payment-cluster \
-          --zone us-central1-a \
+        gcloud container clusters get-credentials payment-cluster1 \
+          --zone us-central1 \
           --project linear-theater-463712-r8
     id: 'Connect to GKE'
 
