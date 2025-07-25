@@ -27,6 +27,8 @@ public class AuthController {
             return ResponseEntity.ok("Length: " + length);
         } catch (NullPointerException e) {
             logger.error("NullPointerException occurred", e);
+            System.err.println("NullPointerException occurred", e);
+
             return ResponseEntity.status(500).body("Error: Null value encountered");
         }
     }
