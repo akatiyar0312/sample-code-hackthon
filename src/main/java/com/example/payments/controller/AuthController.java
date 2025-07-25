@@ -16,20 +16,30 @@ public class AuthController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    // ❌ Controller to trigger a NullPointerException
     @PostMapping("/login")
     public ResponseEntity<String> nullPointerTest(@RequestBody Map<String, Object> payload) {
-        logger.info("Received null pointer test request with payload: {}", payload);
+        logger.info("Received /login request with payload: {}", payload);
 
         try {
+            // This will throw NullPointerException if 'key' is not present or null
             String testValue = (String) payload.get("key");
-            int length = testValue.length();  // This line may throw NullPointerException
+            int length = testValue.length();
             return ResponseEntity.ok("Length: " + length);
         } catch (NullPointerException e) {
-            logger.error("NullPointerException occurred", e);
-            System.err.println("NullPointerException occurred" + e.getStackTrace());
+            // Log to application logger
+            logger.error("❌ NullPointerException occurred in /login", e);
+
+            // Also log raw trace to stderr
+            System.err.println("❌ NullPointerException stack trace:");
+            e.printStackTrace(System.err);
 
             return ResponseEntity.status(500).body("Error: Null value encountered");
+        } catch (Exception e) {
+            logger.error("❌ Unexpected exception occurred in /login", e);
+            System.err.println("❌ Unexpected exception stack trace:");
+            e.printStackTrace(System.err);
+
+            return ResponseEntity.status(500).body("Error: Unexpected error occurred");
         }
     }
 }
