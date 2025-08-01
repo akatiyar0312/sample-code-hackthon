@@ -10,14 +10,14 @@ steps:
       [
         'build',
         '-t',
-        'gcr.io/ltc-reboot25-team-20/payment-backend:$COMMIT_SHA',
+        'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA',
         '.'
       ]
     id: 'Docker Build'
 
   # Step 3: Push Docker image to GCR
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/ltc-reboot25-team-20/payment-backend:$COMMIT_SHA']
+    args: ['push', 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA']
     id: 'Push Image'
 
   # Step 4: Configure kubectl to connect to GKE
@@ -28,7 +28,7 @@ steps:
       - |
         gcloud container clusters get-credentials payment-cluster \
           --zone us-central1 \
-          --project ltc-reboot25-team-20
+          --project linear-theater-463712-r8
     id: 'Connect to GKE'
 
   # Step 5: Deploy to GKE with kubectl
@@ -37,13 +37,13 @@ steps:
     args:
       - -c
       - |
-        sed -i "s|IMAGE_PLACEHOLDER|gcr.io/ltc-reboot25-team-20/payment-backend:$COMMIT_SHA|g" k8s/deployment.yaml
+        sed -i "s|IMAGE_PLACEHOLDER|gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA|g" k8s/deployment.yaml
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
     id: 'Apply K8s Resources'
 
 images:
-  - 'gcr.io/ltc-reboot25-team-20/payment-backend:$COMMIT_SHA'
+  - 'gcr.io/linear-theater-463712-r8/payment-backend:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
